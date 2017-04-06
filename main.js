@@ -10,25 +10,25 @@ class Directories extends React.Component {
   componentDidMount() {
     axios.get(`http://snwp.app/wp-json/wp/v2/companies?orderby=title&order=asc`)
       .then(res => {
-        console.log(res)
         const companies = res.data;
-        console.log(companies)
         this.setState({ companies });
-        console.log(this.state)
       });
   }
 
   render() {
     return (
-      <div>
+      <div class="row">
         <h1>Directory</h1>
-        <ul>
         {this.state.companies.map(company =>
-            <li>
-              <a href={company.acf.url}>{company.title.rendered}</a> - {company.acf.description}
-            </li>
-          )}
-        </ul>
+          <div class="summary-item">
+            <div class="summary-title">
+              <a href={company.acf.url}>{company.title.rendered}</a>
+            </div>
+            <div class="summary-excerpt">
+              {company.acf.description}
+            </div>
+          </div>
+        )}
       </div>
     );
   }
