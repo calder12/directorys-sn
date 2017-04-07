@@ -9,7 +9,7 @@ class Directories extends React.Component {
 
 
   componentDidMount() {
-    axios.get(`http://snwp.app/wp-json/wp/v2/companies?orderby=title&order=asc`)
+    axios.get(`https://nhlchat.com/wp-json/wp/v2/companies?orderby=title&order=asc`)
       .then(res => {
         const companies = res.data;
         this.setState({ companies });
@@ -17,24 +17,14 @@ class Directories extends React.Component {
   }
 
   render() {
-
-      const titleStyle = {
-        "font-size": "30px",
-        "margin-bottom": "10px"
-      };
-
-      const divStyle = {
-        "margin-bottom": "20px"
-      };
     return (
-      <div style={ divStyle }>
-        <h1>Directory</h1>
+      <div>
         {this.state.companies.map(company =>
           <div>
-            <div style={ titleStyle }>
+            <div className="directory-title">
               <a href={company.acf.url}>{company.title.rendered}</a>
             </div>
-            <div>
+            <div className="directory-description">
               {company.acf.description}
             </div>
           </div>
