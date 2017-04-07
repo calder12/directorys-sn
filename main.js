@@ -7,6 +7,7 @@ class Directories extends React.Component {
     };
   }
 
+
   componentDidMount() {
     axios.get(`http://snwp.app/wp-json/wp/v2/companies?orderby=title&order=asc`)
       .then(res => {
@@ -16,15 +17,24 @@ class Directories extends React.Component {
   }
 
   render() {
+
+      const titleStyle = {
+        "font-size": "30px",
+        "margin-bottom": "10px"
+      };
+
+      const divStyle = {
+        "margin-bottom": "20px"
+      };
     return (
-      <div class="row">
+      <div style={ divStyle }>
         <h1>Directory</h1>
         {this.state.companies.map(company =>
-          <div class="summary-item">
-            <div class="summary-title">
+          <div>
+            <div style={ titleStyle }>
               <a href={company.acf.url}>{company.title.rendered}</a>
             </div>
-            <div class="summary-excerpt">
+            <div>
               {company.acf.description}
             </div>
           </div>
